@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
-	let css = document.getElementsByTagName("link");
-	let js = document.getElementsByTagName("script");
+	let body = document.getElementsByTagName("body")[0];
+	let css = document.getElementsByTagName("link")[0];
+	let js = document.getElementsByTagName("script")[0];
 	css.setAttribute("href", "./style.css?" + epoch());
 	js.setAttribute("src", "./main.js?" + epoch());
 
-	
+
 });
 
 // Get current UNIX timestamp.

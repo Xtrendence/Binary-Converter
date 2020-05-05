@@ -55,18 +55,43 @@ button, input {
 	font-size:20px;
 	font-weight:bold;
 	border-radius:20px;
-	margin:10px;
+	margin:20px;
+	box-shadow:var(--shadow-dark);
+	transition:transform 0.25s;
+}
+#desktop .action-button:hover {
+	transform:scale(0.9);
 }
 
 .section {
 	box-shadow:var(--shadow-dark);
 	background:rgb(240,240,240);
-	width:calc(100% - 20px - 20px);
+	width:calc(100% - 40px - 20px);
 	margin:0 auto 0 auto;
 	border-radius:10px;
 	padding:10px;
 }
+.section .action-button {
+	margin:0;
+}
+.action-button-wrapper {
+	text-align:right;
+}
 .hint {
 	font-size:20px;
 	color:rgb(100,100,100);
+}
+.input-wrapper .hint {
+	font-size:16px;
+	color:rgb(125,125,125);
+}
+
+.input-wrapper {
+
+}
+.label {
+
+}
+.input {
+
 }
