@@ -7,7 +7,7 @@ html {
 	font-family:var(--font-family);
 }
 body {
-	background:rgb(245,245,245);
+	background:rgb(255,255,255);
 	color:rgb(75,75,75);
 	margin:0;
 	padding:0;
@@ -56,4 +56,17 @@ button, input {
 	font-weight:bold;
 	border-radius:20px;
 	margin:10px;
+}
+
+.section {
+	box-shadow:var(--shadow-dark);
+	background:rgb(240,240,240);
+	width:calc(100% - 20px - 20px);
+	margin:0 auto 0 auto;
+	border-radius:10px;
+	padding:10px;
+}
+.hint {
+	font-size:20px;
+	color:rgb(100,100,100);
 }
