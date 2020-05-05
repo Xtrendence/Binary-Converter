@@ -10,26 +10,26 @@
 	</head>
 	<body>
 		<button class="action-button clear">Clear All</button>
-		<div class="section">
-			<span class="hint noselect">Enter a value in any of the fields, and click on "Calculate".</span>
+		<div class="section binary-calculator">
+			<span class="hint noselect">Enter a value in any of the fields, and click on "Calculate". Remember to "Clear All" before starting a new calculation.</span>
 			<div class="input-wrapper">
 				<span class="label noselect">Decimal</span>
-				<span class="input decimal" contenteditable="true"></span>
+				<span class="input decimal" data-type="decimal" contenteditable="true"></span>
 				<span class="hint noselect"></span>
 			</div>
 			<div class="input-wrapper">
 				<span class="label noselect">Binary</span>
-				<span class="input binary" contenteditable="true"></span>
+				<span class="input binary" data-type="binary" contenteditable="true"></span>
 				<span class="hint noselect"></span>
 			</div>
 			<div class="input-wrapper">
 				<span class="label noselect">One's Complement</span>
-				<span class="input one-c" contenteditable="true"></span>
+				<span class="input one-c" data-type="one-c" contenteditable="true"></span>
 				<span class="hint noselect"></span>
 			</div>
 			<div class="input-wrapper">
 				<span class="label noselect">Two's Complement</span>
-				<span class="input two-c" contenteditable="true"></span>
+				<span class="input two-c" data-type="two-c" contenteditable="true"></span>
 				<span class="hint noselect"></span>
 			</div>
 			<div class="action-button-wrapper">

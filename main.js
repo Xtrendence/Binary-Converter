@@ -2,8 +2,233 @@ document.addEventListener("DOMContentLoaded", function() {
 	let body = document.getElementsByTagName("body")[0];
 	let css = document.getElementsByTagName("link")[0];
 	let js = document.getElementsByTagName("script")[0];
+
 	css.setAttribute("href", "./style.css?" + epoch());
 	js.setAttribute("src", "./main.js?" + epoch());
+
+	let binaryInputs = document.getElementsByClassName("binary-calculator")[0].getElementsByClassName("input");
+	let inputDecimal = document.getElementsByClassName("decimal")[0];
+	let inputBinary = document.getElementsByClassName("binary")[0];
+	let inputOneC = document.getElementsByClassName("one-c")[0];
+	let inputTwoC = document.getElementsByClassName("two-c")[0];
+
+	for(let i = 0; i < binaryInputs.length; i++) {
+		binaryInputs[i].addEventListener("keydown", function(e) {
+			if(e.key.toLowerCase() === "enter") {
+				e.preventDefault();
+				let value = binaryInputs[i].textContent.trim().replaceAll(" ", "");
+				let type = binaryInputs[i].getAttribute("data-type");
+				calculate(type, value);
+			}
+		});
+		binaryInputs[i].addEventListener("keyup", function(e) {
+			if(e.key.toLowerCase() === "enter") {
+				e.preventDefault();
+				let value = binaryInputs[i].textContent.trim().replaceAll(" ", "");
+				let type = binaryInputs[i].getAttribute("data-type");
+				calculate(type, value);
+			}
+		});
+	}
+
+	let buttonClear = document.getElementsByClassName("clear")[0];
+	let buttonCalculate = document.getElementsByClassName("calculate")[0];
+
+	buttonClear.addEventListener("click", function() {
+		clearAll();
+	});
+	buttonCalculate.addEventListener("click", function() {
+		let type;
+		let value;
+		let filled = 0;
+		for(let i = 0; i < binaryInputs.length; i++) {
+			if(!empty(binaryInputs[i].textContent.trim())) {
+				filled += 1;
+				value = binaryInputs[i].textContent.trim().replaceAll(" ", "");
+				type = binaryInputs[i].getAttribute("data-type");
+			}
+		}
+		if(filled === 1) {
+			calculate(type, value);
+		}
+		else if(filled < 1) {
+			alert("Please enter a value into one of the fields.");
+		}
+		else {
+			alert("You can only enter a value into one of the fields.")
+		}
+	});
+
+	function calculate(type, value) {
+		if(!empty(value)) {
+			let number = parseInt(value);
+
+			console.log("Type: " + type);
+			console.log("Value: " + value);
+
+			let characters = value.split("");
+			let reverse = value.split("").reverse();
+
+			console.log("Characters: " + characters);
+			console.log("Reverse: " + reverse);
+
+			let decimal;
+			let binary;
+			let oneC;
+			let twoC;
+
+			if(type === "decimal") {
+				decimal = value;
+
+				if(characters[0] === "-") {
+					binary = "-" + decimalToBinary(parseInt(value.replaceAll("-", "")));
+					oneC = decimalToOneC(value);
+					twoC = decimalToTwoC(value);
+				}
+				else {
+					binary = decimalToBinary(number);
+					oneC = "-";
+					twoC = "-";
+				}
+			}
+			else if(type === "binary") {
+				binary = value.padStart(8, "0");
+
+				if(characters[0] === "-") {
+					decimal = "-" + binaryToDecimal(parseInt(value.replaceAll("-", "")));
+					oneC = decimalToOneC(decimal);
+				}
+				else {
+					decimal = binaryToDecimal(number);
+				}
+			}
+			else if(type === "one-c") {
+				oneC = value.padStart(8, "0");
+				decimal = oneCToDecimal(oneC);
+
+				if(decimal.split("")[0] === "-") {
+					binary = "-" + decimalToBinary(parseInt(decimal.replaceAll("-", "")));
+				}
+				else {
+					binary = decimalToBinary(decimal);
+				}
+
+				twoC = decimalToTwoC(decimal);
+			}
+			else if(type === "two-c") {
+				twoC = value.padStart(8, "0");
+				decimal = twoCToDecimal(twoC);
+
+				if(decimal.split("")[0] === "-") {
+					binary = "-" + decimalToBinary(parseInt(decimal.replaceAll("-", "")));
+				}
+				else {
+					binary = decimalToBinary(decimal);
+				}
+
+				oneC = decimalToOneC(decimal);
+			}
+			else {
+				alert("Invalid type.");
+			}
+
+			inputDecimal.textContent = decimal;
+			inputBinary.textContent = binary;
+			inputOneC.textContent = oneC;
+			inputTwoC.textContent = twoC;
+
+			console.log("Decimal: " + decimal);
+			console.log("Binary: " + binary);
+			console.log("One's Complement: " + oneC);
+			console.log("Two's Complement: " + twoC);
+		}
+		else {
+			alert("Nothing to calculate.");
+		}
+	}
+
+	function flipBits(bits) {
+		let flipped = "";
+		let characters = bits.split("");
+		for(let i = 0; i < characters.length; i++) {
+			if(characters[i] === "0") {
+				flipped += "1";
+			}
+			else if(characters[i] === "1") {
+				flipped += "0";
+			}
+		}
+		return flipped;
+	}
+
+	function decimalToBinary(decimal) {
+		return parseInt(decimal).toString(2).padStart(8, "0");
+	}
+
+	function decimalToOneC(decimal) {
+		let number = parseInt(decimal.replaceAll("-", ""));
+		let binaryForm = decimalToBinary(number);
+
+		console.log("Binary Form: " + binaryForm);
+
+		let flipped = flipBits(binaryForm);
+
+		console.log("Flipped Bits: " + flipped);
+
+		return flipped;
+	}
+
+	function decimalToTwoC(decimal) {
+		let number = parseInt(decimal.replaceAll("-", "")) - 1;
+		let binaryForm = decimalToBinary(number);
+
+		console.log("Binary Form: " + binaryForm);
+
+		let flipped = flipBits(binaryForm);
+
+		console.log("Flipped Bits: " + flipped);
+
+		return flipped;
+	}
+
+	function binaryToDecimal(binary) {
+		return parseInt(binary, 2);
+	}
+
+	function oneCToDecimal(oneC) {
+		let characters = oneC.split("");
+		let number = parseInt(oneC);
+		let binary = flipBits(number.toString());
+		let decimal = binaryToDecimal(binary);
+
+		if(characters[0] === "0") {
+			return decimal;
+		}
+		else {
+			return "-" + decimal;
+		}
+	}
+
+	function twoCToDecimal(twoC) {
+		let characters = twoC.split("");
+		let number = parseInt(twoC);
+		let binary = flipBits(number.toString());
+		let decimal = binaryToDecimal(binary) + 1;
+
+		if(characters[0] === "0") {
+			return decimal;
+		}
+		else {
+			return "-" + decimal;
+		}
+	}
+
+	function clearAll() {
+		inputDecimal.textContent = "";
+		inputBinary.textContent = "";
+		inputOneC.textContent = "";
+		inputTwoC.textContent = "";
+	}
 
 	if(detectMobile()) {
 		body.id = "mobile";
