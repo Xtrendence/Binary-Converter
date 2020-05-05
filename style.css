@@ -57,10 +57,11 @@ button, input {
 	border-radius:20px;
 	margin:20px;
 	box-shadow:var(--shadow-dark);
-	transition:transform 0.25s;
+	transition:box-shadow 0.25s;
+	cursor:pointer;
 }
 #desktop .action-button:hover {
-	transform:scale(0.9);
+	box-shadow:var(--shadow-darker);
 }
 
 .section {
@@ -80,6 +81,8 @@ button, input {
 .hint {
 	font-size:20px;
 	color:rgb(100,100,100);
+	margin-bottom:10px;
+	display:block;
 }
 .input-wrapper .hint {
 	font-size:16px;
@@ -87,11 +90,20 @@ button, input {
 }
 
 .input-wrapper {
-
+	display:block;
 }
 .label {
-
+	display:block;
+	font-size:20px;
+	color:rgb(0,125,255);
+	margin:10px 0 10px 0;
 }
 .input {
-
+	background:rgb(75,75,75);
+	display:block;
+	padding:10px;
+	outline:none;
+	border-radius:10px;
+	color:rgb(255,255,255);
+	font-size:20px;
 }

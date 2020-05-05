@@ -5,7 +5,12 @@ document.addEventListener("DOMContentLoaded", function() {
 	css.setAttribute("href", "./style.css?" + epoch());
 	js.setAttribute("src", "./main.js?" + epoch());
 
-
+	if(detectMobile()) {
+		body.id = "mobile";
+	}
+	else {
+		body.id = "desktop";
+	}
 });
 
 // Get current UNIX timestamp.
