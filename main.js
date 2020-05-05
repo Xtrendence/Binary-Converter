@@ -63,14 +63,14 @@ document.addEventListener("DOMContentLoaded", function() {
 		if(!empty(value)) {
 			let number = parseInt(value);
 
-			console.log("Type: " + type);
-			console.log("Value: " + value);
+			// console.log("Type: " + type);
+			// console.log("Value: " + value);
 
 			let characters = value.split("");
 			let reverse = value.split("").reverse();
 
-			console.log("Characters: " + characters);
-			console.log("Reverse: " + reverse);
+			// console.log("Characters: " + characters);
+			// console.log("Reverse: " + reverse);
 
 			let decimal;
 			let binary;
@@ -137,10 +137,10 @@ document.addEventListener("DOMContentLoaded", function() {
 			inputOneC.textContent = oneC;
 			inputTwoC.textContent = twoC;
 
-			console.log("Decimal: " + decimal);
-			console.log("Binary: " + binary);
-			console.log("One's Complement: " + oneC);
-			console.log("Two's Complement: " + twoC);
+			// console.log("Decimal: " + decimal);
+			// console.log("Binary: " + binary);
+			// console.log("One's Complement: " + oneC);
+			// console.log("Two's Complement: " + twoC);
 		}
 		else {
 			alert("Nothing to calculate.");
@@ -169,11 +169,11 @@ document.addEventListener("DOMContentLoaded", function() {
 		let number = parseInt(decimal.replaceAll("-", ""));
 		let binaryForm = decimalToBinary(number);
 
-		console.log("Binary Form: " + binaryForm);
+		// console.log("Binary Form: " + binaryForm);
 
 		let flipped = flipBits(binaryForm);
 
-		console.log("Flipped Bits: " + flipped);
+		// console.log("Flipped Bits: " + flipped);
 
 		return flipped;
 	}
@@ -182,11 +182,11 @@ document.addEventListener("DOMContentLoaded", function() {
 		let number = parseInt(decimal.replaceAll("-", "")) - 1;
 		let binaryForm = decimalToBinary(number);
 
-		console.log("Binary Form: " + binaryForm);
+		// console.log("Binary Form: " + binaryForm);
 
 		let flipped = flipBits(binaryForm);
 
-		console.log("Flipped Bits: " + flipped);
+		// console.log("Flipped Bits: " + flipped);
 
 		return flipped;
 	}

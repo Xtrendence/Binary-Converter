@@ -68,7 +68,7 @@ button, input {
 	box-shadow:var(--shadow-dark);
 	background:rgb(240,240,240);
 	width:calc(100% - 40px - 20px);
-	margin:0 auto 0 auto;
+	margin:0 auto 20px auto;
 	border-radius:10px;
 	padding:10px;
 }
@@ -81,7 +81,6 @@ button, input {
 .hint {
 	font-size:20px;
 	color:rgb(100,100,100);
-	margin-bottom:10px;
 	display:block;
 }
 .input-wrapper .hint {
