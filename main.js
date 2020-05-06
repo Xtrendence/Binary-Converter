@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	css.setAttribute("href", "./style.css?" + epoch());
 	js.setAttribute("src", "./main.js?" + epoch());
 
-	let binaryInputs = document.getElementsByClassName("binary-calculator")[0].getElementsByClassName("input");
+	let binaryInputs = document.getElementsByClassName("binary-converter")[0].getElementsByClassName("input");
 	let inputDecimal = document.getElementsByClassName("decimal")[0];
 	let inputBinary = document.getElementsByClassName("binary")[0];
 	let inputOneC = document.getElementsByClassName("one-c")[0];
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				e.preventDefault();
 				let value = binaryInputs[i].textContent.trim().replaceAll(" ", "");
 				let type = binaryInputs[i].getAttribute("data-type");
-				calculate(type, value);
+				convert(type, value);
 			}
 		});
 		binaryInputs[i].addEventListener("keyup", function(e) {
@@ -26,18 +26,18 @@ document.addEventListener("DOMContentLoaded", function() {
 				e.preventDefault();
 				let value = binaryInputs[i].textContent.trim().replaceAll(" ", "");
 				let type = binaryInputs[i].getAttribute("data-type");
-				calculate(type, value);
+				convert(type, value);
 			}
 		});
 	}
 
 	let buttonClear = document.getElementsByClassName("clear")[0];
-	let buttonCalculate = document.getElementsByClassName("calculate")[0];
+	let buttonConvert = document.getElementsByClassName("convert")[0];
 
 	buttonClear.addEventListener("click", function() {
 		clearAll();
 	});
-	buttonCalculate.addEventListener("click", function() {
+	buttonConvert.addEventListener("click", function() {
 		let type;
 		let value;
 		let filled = 0;
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 		}
 		if(filled === 1) {
-			calculate(type, value);
+			convert(type, value);
 		}
 		else if(filled < 1) {
 			alert("Please enter a value into one of the fields.");
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 	});
 
-	function calculate(type, value) {
+	function convert(type, value) {
 		if(!empty(value)) {
 			let number = parseInt(value);
 
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			// console.log("Two's Complement: " + twoC);
 		}
 		else {
-			alert("Nothing to calculate.");
+			alert("Nothing to convert.");
 		}
 	}
 
