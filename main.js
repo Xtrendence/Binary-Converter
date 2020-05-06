@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			alert("Please enter a value into one of the fields.");
 		}
 		else {
-			alert("You can only enter a value into one of the fields.")
+			alert("You can only enter a value into one of the fields. Did you remember to \"Clear All\"?");
 		}
 	});
 
