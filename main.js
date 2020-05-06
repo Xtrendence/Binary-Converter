@@ -12,11 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	let inputOneC = document.getElementsByClassName("one-c")[0];
 	let inputTwoC = document.getElementsByClassName("two-c")[0];
 
-	let fpInputs = document.getElementsByClassName("floating-point-calculator")[0].getElementsByClassName("input");
-	let inputFPDecimal = document.getElementsByClassName("fp-decimal")[0];
-	let inputFPBinary = document.getElementsByClassName("fp-binary")[0];
-	let inputFloatingPoint = document.getElementsByClassName("floating-point")[0];
-
 	for(let i = 0; i < binaryInputs.length; i++) {
 		binaryInputs[i].addEventListener("keydown", function(e) {
 			if(e.key.toLowerCase() === "enter") {
@@ -36,28 +31,8 @@ document.addEventListener("DOMContentLoaded", function() {
 		});
 	}
 
-	for(let i = 0; i < fpInputs.length; i++) {
-		fpInputs[i].addEventListener("keydown", function(e) {
-			if(e.key.toLowerCase() === "enter") {
-				e.preventDefault();
-				let value = fpInputs[i].textContent.trim().replaceAll(" ", "");
-				let type = fpInputs[i].getAttribute("data-type");
-				calculateFP(type, value);
-			}
-		});
-		fpInputs[i].addEventListener("keyup", function(e) {
-			if(e.key.toLowerCase() === "enter") {
-				e.preventDefault();
-				let value = fpInputs[i].textContent.trim().replaceAll(" ", "");
-				let type = fpInputs[i].getAttribute("data-type");
-				calculateFP(type, value);
-			}
-		});
-	}
-
 	let buttonClear = document.getElementsByClassName("clear")[0];
 	let buttonCalculate = document.getElementsByClassName("calculate")[0];
-	let buttonCalculateFP = document.getElementsByClassName("fp-calculate")[0];
 
 	buttonClear.addEventListener("click", function() {
 		clearAll();
@@ -75,27 +50,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		if(filled === 1) {
 			calculate(type, value);
-		}
-		else if(filled < 1) {
-			alert("Please enter a value into one of the fields.");
-		}
-		else {
-			alert("You can only enter a value into one of the fields.")
-		}
-	});
-	buttonCalculateFP.addEventListener("click", function() {
-		let type;
-		let value;
-		let filled = 0;
-		for(let i = 0; i < fpInputs.length; i++) {
-			if(!empty(fpInputs[i].textContent.trim())) {
-				filled += 1;
-				value = fpInputs[i].textContent.trim().replaceAll(" ", "");
-				type = fpInputs[i].getAttribute("data-type");
-			}
-		}
-		if(filled === 1) {
-			calculateFP(type, value);
 		}
 		else if(filled < 1) {
 			alert("Please enter a value into one of the fields.");
@@ -194,45 +148,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 	}
 
-	function calculateFP(type, value) {
-		if(!empty(value)) {
-			let number = parseInt(value);
-
-			let characters = value.split("");
-
-			let decimal;
-			let binary;
-			let floatingPoint;
-
-			if(type === "decimal") {
-				decimal = value;
-
-				if(characters[0] === "-") {
-					binary = "-" + decimalToBinary(parseInt(value.replaceAll("-", "")));
-				}
-				else {
-					binary = decimalToBinary(number);
-				}
-			}
-			else if(type === "binary") {
-
-			}
-			else if(type === "floating-point") {
-
-			}
-			else {
-				alert("Invalid type.");
-			}
-
-			inputFPDecimal.textContent = decimal;
-			inputFPBinary.textContent = binary;
-			inputFloatingPoint.textContent = floatingPoint;
-		}
-		else {
-			alert("Nothing to calculate.");
-		}
-	}
-
 	function flipBits(bits) {
 		let flipped = "";
 		let characters = bits.split("");
@@ -279,10 +194,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	function binaryToDecimal(binary) {
 		return parseInt(binary, 2);
-	}
-
-	function binaryToFloatingPoint(binary) {
-
 	}
 
 	function oneCToDecimal(oneC) {

@@ -17,6 +17,10 @@ button, input {
 	outline:none;
 	transition:background 0.25s, color 0.25s;
 }
+a {
+	text-decoration:none;
+	color:rgb(0,150,255);
+}
 .noselect {
 	-webkit-user-select:none;
 	-khtml-user-select:none;
